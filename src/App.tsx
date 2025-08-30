@@ -1,11 +1,16 @@
-import './index.css'
-import Home from './pages/Home'
+import Nav from "./components/Nav";
+import "./index.css";
+import Home from "./pages/Home";
 
 function App() {
-
   return (
-    <div className='bg-red-500'><Home/></div>
-  )
+    <>
+      <Nav/>
+      <div>
+        <Home />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
