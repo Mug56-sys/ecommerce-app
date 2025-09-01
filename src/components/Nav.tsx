@@ -1,17 +1,18 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { useNavigate } from "react-router";
-
-export default function Nav() {
-  const navigate=useNavigate()
+import type { ProductList as ProductListType } from "../utils/Types";
+export default function Nav({cart}:{cart:ProductListType}) {
+  const navigate = useNavigate();
   const [toolTipHidden, setToolTipHidden] = useState(false);
 
   const handleHomeClick = () => {
     if (location.pathname === "/home") {
       location.reload();
-    }else{
-      navigate('/home')
+    } else {
+      navigate("/home");
     }
   };
+ 
   return (
     <div className="bg-red-900 h-20 flex justify-between items-center px-5 top-0">
       <button
@@ -20,16 +21,30 @@ export default function Nav() {
         onMouseEnter={() => {
           setToolTipHidden(true);
         }}
-        onMouseLeave={()=>{
-          setToolTipHidden(false)
+        onMouseLeave={() => {
+          setToolTipHidden(false);
         }}
       >
         Home
-        {!toolTipHidden ? null :<span className="absolute bg-gray-900 text-white mx-8 rounded-full left-[-40px] top-12 text-sm py-1 w-20">{location.pathname === "/home" ? 'Refresh':'Go home'}</span>}
+        {!toolTipHidden ? null : (
+          <span className="absolute bg-gray-900 text-white mx-8 rounded-full left-[-40px] top-12 text-sm py-1 w-20">
+            {location.pathname === "/home" ? "Refresh" : "Go home"}
+          </span>
+        )}
       </button>
-      <div className="text-4xl cursor-pointer" onClick={()=>{navigate('/cart')
-
-      }}>🛒</div>
+      <div
+        className="text-4xl cursor-pointer relative"
+        onClick={() => {
+          navigate("/cart");
+        }}
+      >
+        <span className="relative">🛒</span>
+        {Number(cart.length)  ? (
+          <span className="absolute text-sm text-white rounded-full bg-red-500  px-[6px] -left-2 -bottom-3">
+            {cart.length}
+          </span>
+        ) : null}
+      </div>
     </div>
   );
 }
