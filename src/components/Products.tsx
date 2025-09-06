@@ -17,6 +17,7 @@ export default function Products() {
               id={prod.id}
               title={prod.title}
               description={prod.description}
+              deliveryTime={prod.deliveryTime}
             />
           ))
         : null}

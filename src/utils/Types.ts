@@ -4,5 +4,6 @@ export type Product = {
   description: string;
   img:string;
   price:string;
+  deliveryTime:string;
 };
 export type ProductList = Product[];
