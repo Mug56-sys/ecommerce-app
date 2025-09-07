@@ -7,6 +7,10 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import ProductPage from "./pages/ProductPage";
 import type { ProductList } from "./utils/Types";
+import Delivery from "./pages/Delivery";
+import Method from "./pages/Method";
+import Payment from "./pages/Payment";
+import Success from "./pages/Success";
 
 function App() {
   const [cart,setCart]=useState<ProductList>([])
@@ -27,6 +31,10 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/cart" element={<Cart cart={cart}/>} />
         <Route path="/products/:PageId" element={<ProductPage setCart={setCart} cart={cart}/>}/>
+        <Route path="checkout/delivery" element={<Delivery/>} />
+        <Route path="checkout/method" element={<Method/>}/>
+        <Route path="checkout/payment" element={<Payment/>}/>
+        <Route path="checkout/success" element={<Success/>}/>
       </Routes>
     </>
   );

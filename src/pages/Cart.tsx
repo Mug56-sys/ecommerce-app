@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function Cart({ cart }: { cart: ProductListType }) {
   const navigate=useNavigate()
+  const [cost, setCost] = useState<number>(0);
   const [deliveryCost,setDeliveryCost]=useState<number>(0)
   const Tax = 0.2;
-  const [cost, setCost] = useState<number>(0);
+  
 
   useEffect(() => {
     const FullCost = cart.reduce((acc, prod) => acc + Number(prod.price), 0);
@@ -37,7 +38,7 @@ export default function Cart({ cart }: { cart: ProductListType }) {
       {cost > 0 ? (
         <>
           <div className="flex-grow"></div>
-          <div className="w-50 border text-xl rounded-xl max-h-[23%] bg-white shadow flex flex-col">
+          <div className="w-50 border text-xl rounded-xl max-h-[200px] bg-white shadow flex flex-col">
             <p className="border-b text-center text-3xl">Price Details</p>
             <p className="border-b text-sm font-semibold flex">
               Cost before Tax: <span className="ml-auto mr-1">{cost.toFixed(2)}$</span>
@@ -51,7 +52,7 @@ export default function Cart({ cart }: { cart: ProductListType }) {
             <p className="border-b text-sm font-semibold flex">
               Cost After Tax: <span className="ml-auto mr-1">{(cost + cost * Tax+deliveryCost).toFixed(2)}$</span>
             </p>
-            <button className="text-[11px] border rounded-xl bg-yellow-400 p-2 w-[70%] mt-2 cursor-pointer hover:bg-yellow-500 self-center" onClick={()=>navigate('/cart')}>Proceed To Checkout</button>
+            <button className="text-[11px] border rounded-xl bg-yellow-400 p-2 w-[70%] mt-2 cursor-pointer hover:bg-yellow-500 self-center" onClick={()=>navigate('/checkout/delivery')}>Proceed To Checkout</button>
           </div>
         </>
       ) : null}
