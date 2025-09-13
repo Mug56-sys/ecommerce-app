@@ -68,9 +68,9 @@ export default function Delivery() {
               ></input>
               <div className="inline-block w-[2%]"></div>
               <select className="bg-white border rounded-lg p-1 w-[49%] ">
-                {countries?.map((country: any) => {
-                  return <option className="rounded">{country.name}</option>;
-                })}
+                {countries ? countries?.map((country: any) => {
+                  return <option key={country.id} className="rounded">{country.name}</option>;
+                }): <option>Loading...</option>}
               </select>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function Delivery() {
             onClick={() => {
               navigate("/checkout/method");
             }}
-            className="border w-[50%] text-2xl bg-blue-500 text-white border-black rounded-xl font-semibold py-1 mt-5 self-center"
+            className="border w-[50%] text-2xl bg-blue-500 text-white border-black rounded-xl font-semibold py-1 mt-5 self-center cursor-pointer hover:bg-blue-600"
           >
             Submit
           </button>

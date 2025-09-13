@@ -14,6 +14,7 @@ import Success from "./pages/Success";
 
 function App() {
   const [cart,setCart]=useState<ProductList>([])
+  const [method,setMethod]=useState<string>('Paypal')
   const navigate = useNavigate();
   useEffect(() => {
     if (location.pathname === "/") {
@@ -32,8 +33,8 @@ function App() {
         <Route path="/cart" element={<Cart cart={cart}/>} />
         <Route path="/products/:PageId" element={<ProductPage setCart={setCart} cart={cart}/>}/>
         <Route path="checkout/delivery" element={<Delivery/>} />
-        <Route path="checkout/method" element={<Method/>}/>
-        <Route path="checkout/payment" element={<Payment/>}/>
+        <Route path="checkout/method" element={<Method setMethod={setMethod}/>}/>
+        <Route path="checkout/payment" element={<Payment method={method}/>}/>
         <Route path="checkout/success" element={<Success/>}/>
       </Routes>
     </>
